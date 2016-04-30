@@ -1,10 +1,15 @@
 # Phrack CTF
+[phrack CTF 2016][c9822f33]
 ## 测试题
+**感谢DG421138355及倬子两位的解题思路分享！**
 1. base64？
     ``GUYDIMZVGQ2DMN3CGRQTONJXGM3TINLGG42DGMZXGM3TINLGGY4DGNBXGYZTGNLGGY3DGNBWMU3WI===``
+    - 题目是Base64？，然而根据base64算法编码串末尾只会有一到两个`=`，故可能是base32编码，尝试之，得解orz（~~我会说我自己写了一个类似于Base64的算法然后不是前两位加0而是后两位加0之后解密发现还是不对吗！！！~~）
     - [Base32 decoder][6bdb3a2e]
     - [Hexadecimal -> ASCII][c6610975]
     - `PCTF{Just_t3st_h4v3_f4n}`
+    - [关于base64算法][e7a2fac9]
+
 
 2. 关于USS Lab
 
@@ -55,8 +60,6 @@
     - `PCTF{You_are_R3ally_Car3ful}`
     - More about 隐写：[隐写术总结][8aba9e34]
 
-
-
 7. veryeasyRSA
 
 8. 神秘的文件
@@ -65,6 +68,8 @@
 
 10. Easy Crackme
 
+  [c9822f33]: https://ctf.phrack.top "phrack CTF 2016"
   [6bdb3a2e]: http://tomeko.net/online_tools/base32.php?lang=en "Base32 decoder"
   [c6610975]: http://tomeko.net/online_tools/hex_to_ascii.php?lang=en "Hexadecimal to ASCII converter"
   [8aba9e34]: http://drops.wooyun.org/tips/4862 "隐写术总结"
+  [e7a2fac9]: http://base64.xpcha.com/ "Base64编码/解码"
