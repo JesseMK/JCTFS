@@ -4,6 +4,7 @@
 **感谢DG421138355及倬子两位的解题思路分享！**
 
 1. base64？[编码]
+
     ``GUYDIMZVGQ2DMN3CGRQTONJXGM3TINLGG42DGMZXGM3TINLGGY4DGNBXGYZTGNLGGY3DGNBWMU3WI===``
     - 题目是Base64？，然而根据base64算法编码串末尾只会有一到两个`=`，故可能是base32编码，尝试之，得解orz（~~我会说我自己写了一个类似于Base64的算法然后不是前两位加0而是后两位加0之后解密发现还是不对吗！！！~~）
     - [Base32 decoder][6bdb3a2e]
