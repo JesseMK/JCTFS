@@ -1,9 +1,5 @@
 # Phrack CTF BASE
-[phrack CTF 2016][c9822f33]
 
-[TOC]
-
-## 测试题
 **感谢DG421138355及倬子两位的解题思路分享！**
 
 1. base64？[编码]
