@@ -1,7 +1,6 @@
-# Phrack CTF BASE
+# Phrack CTF BASIC
 
-**感谢DG421138355及倬子两位的解题思路分享！**
-
+## 测试题
 1. base64？[编码]
 
     ```
@@ -56,7 +55,7 @@
     ```
 
     - ~~不知道这题是该叫手残还是眼瞎~~ orz
-    - ~~眼动~~恢复原md5:  `d78b6f30225cdc811adfe8d4e7c9fd34`
+    - ~~眼动~~ 恢复原md5:`d78b6f30225cdc811adfe8d4e7c9fd34`
     - [MD5](http://www.cmd5.com/)
     - `PCTF{hack}`
 
@@ -67,13 +66,19 @@
     ```
     [logo.jpg.8244d3d060e9806accc508ec689fabfb](https://ctf.phrack.top/upload/logo.jpg.8244d3d060e9806accc508ec689fabfb)
 
-    - 最简单的隐写类型，十六进制编辑器（如winHex）打开后直接查找jpg文件头和jpg文件尾，发现是两幅图片的拼接，拆分后找到~~鼓舞人心的~~flag
+    - 最简单的隐写类型，十六进制编辑器（如winHex）打开后直接查找jpg文件头和jpg文件尾，发现是两幅图片的拼接，拆分后找到 ~~鼓舞人心的~~ flag
     - `PCTF{You_are_R3ally_Car3ful}`
     - More about 隐写：[隐写术总结][8aba9e34]
 
 7. veryeasyRSA[密码]
 
-    -
+    ```
+    已知RSA公钥生成参数：
+    p = 3487583947589437589237958723892346254777 q = 8767867843568934765983476584376578389
+    e = 65537
+    求d
+    ```
+
     ```
     import math
 
@@ -115,10 +120,68 @@
 8. 神秘的文件[逆向]
 
 9. 公倍数[数学..好吧应该是算法题]
+    ```
+    请计算1000000000以内3或5的倍数之和。
+    如：10以为这样的数有3,5,6,9，和是23
+    请提交PCTF{你的答案}
+    ```
+
+    ```
+    import math
+
+    MaxNum = 1000000000
+    MaxTre = MaxNum / 3 + 1
+    MaxFiv = MaxNum / 5
+
+    ans = 0
+
+    for i in xrange(MaxFiv):
+        ans += 5*i
+        # print 5*i
+
+    print "part 1 done"
+
+    for i in xrange(MaxTre):
+        if (i % 5 != 0):
+            ans += 3*i
+            # print 3*i
+            # print i
+
+    print ans
+    # 233333333166666668
+    ```
 
 10. Easy Crackme[逆向]
 
-  [c9822f33]: https://ctf.phrack.top "phrack CTF 2016"
+
+## 正式题
+
+11. Secret[签到题]
+    ```
+    Can you find the Secret?
+    ```
+
+    - 观察HTTP头发现多了一项`secret`的参数，内容即为flag
+    - `PCTF{Welcome_to_phrackCTF_2016}`
+
+12. 爱吃培根的出题人
+
+13. Easy RSA
+
+14. ROPGadget
+
+15. 取证
+
+16. 熟悉的声音
+
+17. Baby's Crack
+
+18. Help!!
+    - 解压zip -> 解压docx -> 找到word/media下的图片
+    - `PCTF{You_Know_moR3_4boUt_woRd}`
+
+19. Shellcode
+
   [6bdb3a2e]: http://tomeko.net/online_tools/base32.php?lang=en "Base32 decoder"
   [c6610975]: http://tomeko.net/online_tools/hex_to_ascii.php?lang=en "Hexadecimal to ASCII converter"
   [8aba9e34]: http://drops.wooyun.org/tips/4862 "隐写术总结"
