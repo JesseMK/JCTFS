@@ -9,7 +9,7 @@
 5. 提权
 	1. Linux: 提权漏洞网站
 	2. Windows:
-			1. ASP+ASP.NET:  http://wy811007.blog.163.com/blog/static/3746822120111251384689/
+		1. ASP+ASP.NET:  http://wy811007.blog.163.com/blog/static/3746822120111251384689/
 6. PHP@Windows：system权限
 	0. username$
 	1. 开启3189
