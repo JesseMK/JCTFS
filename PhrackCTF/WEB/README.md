@@ -146,9 +146,9 @@
         3. `strlen($b)>5`
         4. `eregi("111".substr($b,0,1),"1114")`
         5. `substr($b,0,1)!=4`
-    - 所以构造出可以获得flag的连接：`index.php?id=0 & a=data:text/plain,1112%20is%20a%20nice%20lab! & b=......`
-    - `index.php?id=0a&a=data:text/plain,1112%20is%20a%20nice%20lab!&b=.whaterever`
+    - 所以构造出可以获得flag的连接：`index.php?id=0a&a=data:text/plain,1112%20is%20a%20nice%20lab!&b=.whaterever`，获得
     - [PHP中的header（）函数](http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html)
     -
 
 6. RE?
+    - so文件

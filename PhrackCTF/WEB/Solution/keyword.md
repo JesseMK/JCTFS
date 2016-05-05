@@ -1,0 +1,13 @@
+getflag_init
+help_me_init
+getflag
+malloc
+w
+sprintf
+strlen
+help_me
+libc.so.6
+_edata
+__bss_start
+_end
+GLIBC_2.2.5
