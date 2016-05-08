@@ -171,6 +171,29 @@
         - [MYSQL注入语句大全](http://www.2cto.com/Article/201108/99744.html)
 
 6. RE?
+    > 咦，奇怪，说好的WEB题呢，怎么成逆向了？不过里面有个help_me函数挺有意思的哦
+
     - so文件
+    - 调用`help_me`
+        ```
+        create function help_me returns string soname 'udf.so';
+        select help_me()
+        ```
+        - 得到
+            ```
+            +---------------------------------------------+
+            | help_me()                                   |
+            +---------------------------------------------+
+            | use getflag function to obtain your flag!!  |
+            +---------------------------------------------+
+            1 row in set (0.00 sec)
+            ```
+    - 调用`getflag`，得到flag`PCTF{Interesting_U5er_d3fined_Function}`
+        ```
+        create function getflag returns string soname 'udf.so';
+        select getflafg();
+        ```
 
 7. flag在管理员手里
+    - Cookie
+    - windows:`~`, linux:'.file.swp'
