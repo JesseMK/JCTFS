@@ -14,5 +14,6 @@
         Disallow: /deep-blue-sea/team/runes
         Disallow: /deep-blue-sea/team/vendors
         ```
+    - 发现其中`/deep-blue-sea/team/vendors`可以访问
 
 2.
