@@ -4,6 +4,7 @@
     > Please use port 51 to visit this site.
 
     - curl
+    - `curl --local-port 51 http://web.phrack.top:32772/`
 
 2. LOCALHOST
     - `X-Forwarder-For: 127.0.0.1`
@@ -197,3 +198,35 @@
 7. flag在管理员手里
     - Cookie
     - windows:`~`, linux:'.file.swp'
+        - 获取`index.php~`: `wget http://web.phrack.top:32785/index.php~`
+        - 用vim恢复，`mv index.php~ .index.swp && vim -r .index.swp`，得到：
+            ```
+            $auth = false;
+            $role = "guest";
+            $salt =
+            if (isset($_COOKIE["role"])) {
+                    $role = unserialize($_COOKIE["role"]);
+                    $hsh = $_COOKIE["hsh"];
+                    if ($role==="admin" && $hsh === md5($salt.strrev($_COOKIE["role"]))) {
+                            $auth = true;
+                    } else {
+                            $auth = false;
+                    }
+            } else {
+                    $s = serialize($role);
+                    setcookie('role',$s);
+                    $hsh = md5($salt.strrev($s));
+                    setcookie('hsh',$hsh);
+            }
+            if ($auth) {
+                    echo "<h3>Welcome Admin. Your flag is
+            } else {
+                    echo "<h3>Only Admin can see the flag!!</h3>";
+            }
+            ```
+    - 恢复的代码内隐藏了$salt，已知的其他信息：
+        - $cookie['role'] = 's:5:"guest";';
+        - strrev($cookie['role']) = ';"tseug":5:s'
+        - $hsh = '3a4727d57463f122833d9e732f94e4e0'
+    > 长度扩展攻击（Length extension attacks）是指针对某些允许包含额外信息的加密散列函数的攻击手段。
+    > 大部分web server在处理同样参数的不同内容时倾向于选择后面的，例如foo=1&foo=2，最后foo的值是2，但是有些web server也会使用前面的，这样这个方法就不能直接用了

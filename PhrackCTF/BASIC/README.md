@@ -102,6 +102,9 @@
     - `PCTF{Welcome_to_phrackCTF_2016}`
 
 12. 爱吃培根的出题人
+    > bacoN is one of aMerICa'S sWEethEartS. it's A dARlinG, SuCCulEnt fOoD tHAt PaIRs FlawLE
+
+    - 取出大写字母`NMICS/WEESA/ARGSC/CEODH/APIRF/LE`
 
 13. Easy RSA
     > 还记得veryeasy RSA吗？是不是不难？那继续来看看这题吧，这题也不难。
