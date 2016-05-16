@@ -50,3 +50,7 @@
     - 域名需要通过https访问
 
 5. Wallowing Wallabies - Part Three
+6. Purple Wombats
+    > We've received a penetration test request for this high-quality site, but we were too busy building a CTF. Can you help us out?
+
+    -
