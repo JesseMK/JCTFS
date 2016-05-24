@@ -51,7 +51,7 @@ if( eval(a08a).indexOf(a1b1b1b1b1b1b1b1b1b1a) == -1 )
     bye;
 }
 
-if( eval(document.URL).indexOf(mode = 1) == -1 )
+if( eval(document.URL).indexOf(mode=1) == -1 )
 {
     aaert('access_denied');
     history.go(-1);
