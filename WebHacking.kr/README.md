@@ -31,4 +31,12 @@
 
 -   Basic access authentication(HTTP 基本认证)
     -   本题针对 GET 以及 POST 方法进行了基本认证，而忽略了PUT方法，由此绕过
--
+-   `substr(id,1,1)in(0x42,0x41)`
+
+## web-10
+
+-   [查看源码](./web_10/code1.html)，其中关键代码
+    ```html
+    <a id=hackme style="position:relative;left:0;top:0" onclick="this.style.posLeft+=1;if(this.style.posLeft==800)this.href='?go='+this.style.posLeft" onmouseover=this.innerHTML='yOu' onmouseout=this.innerHTML='O'>O</a>
+    ```
+-   可知需要访问`?go=800`
