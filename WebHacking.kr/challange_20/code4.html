@@ -1,0 +1,84 @@
+<html>
+
+    <head>
+        <title>Challenge 20</title>
+        <style type="text/css">
+            body {
+                background: black;
+                color: white;
+                font-size: 10pt;
+            }
+
+            input {
+                background: silver;
+                color: black;
+                font-size: 9pt;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <center><font size=2>time limit : 2</font></center>
+        <form name=lv5frm method=post>
+            <table border=0>
+                <tr>
+                    <td>nickname</td>
+                    <td>
+                        <input type=text name=id size=10 maxlength=10>
+                    </td>
+                </tr>
+                <tr>
+                    <td>comment</td>
+                    <td>
+                        <input type=text name=cmt size=50 maxlength=50>
+                    </td>
+                </tr>
+                <tr>
+                    <td>code</td>
+                    <td>
+                        <input type=text name=hack>
+                        <input type=button name=attackme value="diiswnjnqw" style=border:0;background=lightgreen onmouseover=this.style.font=size=30 onmouseout=this.style.font=size=15>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type=button value="Submit" onclick=ck()>
+                    </td>
+                    <td>
+                        <input type=reset>
+                    </td>
+                </tr>
+            </table>
+            <script>
+                function ck() {
+
+                    if (lv5frm.id.value == "") {
+                        lv5frm.id.focus();
+                        return;
+                    }
+                    if (lv5frm.cmt.value == "") {
+                        lv5frm.cmt.focus();
+                        return;
+                    }
+                    if (lv5frm.hack.value == "") {
+                        lv5frm.hack.focus();
+                        return;
+                    }
+                    if (lv5frm.hack.value != lv5frm.attackme.value) {
+                        lv5frm.hack.focus();
+                        return;
+                    }
+
+                    lv5frm.submit();
+
+                }
+
+            </script>
+
+            <br> do not programming!
+            <br> this is javascript challenge
+
+    </body>
+
+</html>

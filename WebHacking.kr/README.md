@@ -40,3 +40,7 @@
     <a id=hackme style="position:relative;left:0;top:0" onclick="this.style.posLeft+=1;if(this.style.posLeft==800)this.href='?go='+this.style.posLeft" onmouseover=this.innerHTML='yOu' onmouseout=this.innerHTML='O'>O</a>
     ```
 -   可知需要访问`?go=800`
+
+## web-13
+
+> HINT : select flag from prob13password
