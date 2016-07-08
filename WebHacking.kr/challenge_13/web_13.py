@@ -3,7 +3,7 @@ import requests
 url = 'http://webhacking.kr/challenge/web/web-10/index.php'
 
 r = requests.session()
-headers = {"Cookie": "PHPSESSID=984gnr3vg52rq3tnvpgkuolsd4"}
+headers = {"Cookie": "PHPSESSID="}
 pw = ''
 
 

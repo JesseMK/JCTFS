@@ -7,7 +7,7 @@ flag = ''
 def injection(payload):
     try:
         r = requests.put(url, params=payload, cookies={
-                         'PHPSESSID': 'pua0lg1v52sqngu16iaifcn474'})
+                         'PHPSESSID': ''})
 
         return 'Secret' in r.content
 

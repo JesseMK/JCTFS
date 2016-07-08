@@ -24,7 +24,7 @@ for i in range(1, 26):
 
 for i in range(1, 26):
     payload['_' + str(i)] = 1
-    answer[i-1] = '1'
+    answer[i - 1] = '1'
 
 # for i in range( int( MAXBIN, 2 ) ):
 #
@@ -41,7 +41,7 @@ for i in range(1, 26):
 #     # print payload
 
     try:
-        r = requests.get(url, params = payload, cookies = {'PHPSESSID' : 'ntd4gfphbmef5q78f73nv9svi4'})
+        r = requests.get(url, params=payload, cookies={'PHPSESSID': ''})
         # print i, ': ', r.text
         if r.text.find('No!') == 0:
             print 'Succeed @ ', i
