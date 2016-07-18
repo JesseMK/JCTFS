@@ -1,5 +1,5 @@
-# CTF
-for CTF Study&share
+# JCTFS
+Just for CTF Study
 
 0. Something
     - Tools
