@@ -23,7 +23,8 @@ O0O0[0] +=
 O00O += 'eva';
 OOOO = 'bZbJgXimpgJiRythFtjyLqqcUrROoOnOcGro';
 O00O += 'l(unes' + 'cape(_O0))}';
-eval(O00O);
+// eval(O00O);
+console.log(O00O);
 OO00 = 'kwQajkuWQqsOeyJwaOOOOPWOqVUfOOUpWyvcVmbXgrOOR';
 O00O = '';
 O0OO +=

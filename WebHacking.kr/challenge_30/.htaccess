@@ -1,6 +1,3 @@
 php_value mysql.default_host      "104.131.23.191"
 php_value mysql.default_user      "webhacking"
 php_value mysql.defualt_password  "wEBHacking1234"
-CREATE USER webhacking IDENTIFIED BY 'wEBHacking_1234';
-GRANT ALL PRIVILEGES ON challenge_30_table.* TO 'webhacking'@'112.216.9.92' IDENTIFIED BY 'wEBHacking_1234';
-GRANT ALL PRIVILEGES ON challenge_30_table.* TO webhacking IDENTIFIED BY 'wEBHacking1234';

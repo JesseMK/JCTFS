@@ -1,6 +1,6 @@
 <?php
 
-mysql_connect() or die();
+mysql_connect("104.131.23.191", "webhacking", "wEBHacking1234") or die();
 
 mysql_select_db("challenge_30_table") or die();
 

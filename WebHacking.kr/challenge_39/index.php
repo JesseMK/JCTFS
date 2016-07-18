@@ -1,9 +1,3 @@
-<html>
-<head>
-<title>Chellenge 39</title>
-</head>
-<body>
-
 <?php
 
 $pw="????";
@@ -21,10 +15,3 @@ if ($_POST[id]) {
 }
 
 ?>
-
-<form method=post action=index.php>
-<input type=text name=id maxlength=15 size=30>
-<input type=submit>
-</form>
-</body>
-</html>
