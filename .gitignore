@@ -1,4 +1,9 @@
+Private/*
+
 *.id[0123456789]
 *.nam
 *.til
 *.idb
+peda0-session-*
+*.gdb_history
+
