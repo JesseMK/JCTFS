@@ -4,6 +4,5 @@ Private/*
 *.nam
 *.til
 *.idb
-peda0-session-*
+peda-session-*
 *.gdb_history
-
