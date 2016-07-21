@@ -1,6 +1,6 @@
 import requests
 
-url = 'http://webhacking.kr/challenge/bonus/bonus-2/index.php'
+url = ''
 
 r = requests.session()
 headers = {"Cookie": "PHPSESSID="}
