@@ -9,3 +9,4 @@ CISCN/*
 *.idb
 peda-session-*
 *.gdb_history
+.*/
