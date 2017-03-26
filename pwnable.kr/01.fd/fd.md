@@ -1,4 +1,15 @@
-> `echo "LETMEWIN" | ./fd 4660`
+# fd
+- Re
+
+- Method 1
+LETMEWIN
+    > `echo "LETMEWIN" | ./fd 4660`
+
+- Method 2
+    >```
+    >./fd 4661 
+    >LETMEWIN
+    >```
 
 1.  `echo`  可写入文件流，即标准输入
 2.  在 Linux 系统下，使用 `read()` 或 `open()` 函数成功打开文件后会返回针对该文件的文件描述符（整型）,若打开失败会返回 -1。
