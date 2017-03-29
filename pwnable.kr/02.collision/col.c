@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 unsigned long hashcode = 0x21DD09EC;
-// ./col `python -c "print '\xc8\xce\xc5\x06' * 4 + '\xcc\xce\xc5\x06'"`
-// ./col $(python -c 'print "\xE8\x05\xD9\x1D" + 16*"\x01"')
 unsigned long check_password(const char* p){
     int* ip = (int*)p;
     int i;

@@ -1,8 +1,10 @@
 # pwnable.kr
 
 ## fd
+- [Notes](./01.fd/fd.md)
 
 ## collision
+- [Notes](./02.collision/collision.md)
 
 ## bof
 
