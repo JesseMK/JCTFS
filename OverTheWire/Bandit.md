@@ -50,9 +50,9 @@
 
 -   Level 4
 
-    -   `./-file0*`
+    -   `file ./-file0*`
     -   flag: `koReBOKuIDDepwhWk7jZC0RTdopnAYKh`
 
 -   Level 5
     -   `find ./* -size 1033c -readable ! -perm /111`
-    -   
+    -   flag: `DXjZPULLxYr17uwoI01bNLQbtFemEgo7`
